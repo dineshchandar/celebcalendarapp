@@ -97,4 +97,20 @@ class DatabaseService {
       return [];
     }
   }
+
+  Future<List<Celebrity>> getCelebritiesByMonth(int month) async {
+    try {
+      final db = await instance.database;
+      final result = await db.query(
+        'celebrities',
+        where: "strftime('%m', birthDate) = ?",
+        whereArgs: [month.toString().padLeft(2, '0')],
+        orderBy: "strftime('%d', birthDate)"
+      );
+      return result.map((json) => Celebrity.fromJson(json)).toList();
+    } catch (e) {
+      print('Error fetching celebrities by month: $e');
+      return [];
+    }
+  }
 }

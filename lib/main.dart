@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'services/celebrity_service.dart';
 import 'models/celebrity.dart';
+import 'screens/monthly_view_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +36,21 @@ class CelebrityCalendarPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: AppBar(
+        title: const Text('Celebrity Calendar'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const MonthlyViewScreen()),
+              );
+            },
+            child: const Text('Monthly View'),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Column(
           children: [

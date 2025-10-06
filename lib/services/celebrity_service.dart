@@ -18,4 +18,8 @@ class CelebrityService {
     }
     return _celebrities;
   }
+
+  static Future<List<Celebrity>> getCelebritiesByMonth(int month) async {
+    return await DatabaseService.instance.getCelebritiesByMonth(month);
+  }
 }
